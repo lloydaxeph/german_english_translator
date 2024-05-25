@@ -31,7 +31,6 @@ def create_model(N, h, vocab_src, vocab_tgt) -> (EncoderDecoder, int):
     ffn = FeedForwardNetwork(d_model=configs.d_model, d_ff=configs.d_ff, dropout=configs.dropout).to(configs.device)
     pos_encoding = PositionalEncoding(d_model=configs.d_model, dropout=configs.dropout).to(configs.device)
 
-    # Create Model
     deepcopy = copy.deepcopy
     model = EncoderDecoder(
         encoder=Encoder(EncoderLayer(size=configs.d_model,
@@ -105,7 +104,7 @@ def run():
     parser = argparse.ArgumentParser(description='Multi-Head Transformer Training.')
     parser.add_argument('--epochs', type=int, default=configs.epochs)
     parser.add_argument('--batch_size', type=int, default=configs.batch_size)
-    parser.add_argument('--lr', type=int, default=configs.lr)
+    parser.add_argument('--lr', type=float, default=configs.lr)
     args = parser.parse_args()
 
     train_dataset, val_dataset, vocab_src, vocab_tgt = create_datasets()

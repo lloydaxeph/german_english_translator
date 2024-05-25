@@ -3,7 +3,6 @@ import copy
 import argparse
 import torch
 import torch.nn as nn
-import torchtext
 from torch.utils.data import DataLoader
 
 import configs
@@ -14,7 +13,7 @@ from models import (EncoderDecoder, Encoder, Decoder, EncoderLayer, DecoderLayer
                     Embeddings, Generator)
 
 
-def create_datasets(data_path: str) -> (Multi30kDataset, dict, dict):
+def create_datasets(data_path: str) -> (Multi30kDataset, dict, dict, dict, dict):
     train_dataset = Multi30kDataset(os.path.join(configs.dataset_path, 'train.de.gz'),
                                     os.path.join(configs.dataset_path, 'train.en.gz'), max_length=50)
     test_dataset = Multi30kDataset(os.path.join(data_path, 'test_2018_flickr.de.gz'),
